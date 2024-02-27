@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,7 +13,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts= Post::query()
+            ->where('active','=',1)
+        ->whereDate('published_at','<',Carbon::now())
+        ->orderBy('published_at','desc')
+        ->paginate();
+
+        return view('home',compact('posts'));
 
 
     }
@@ -20,9 +27,9 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
     }
 
     /**

@@ -18,6 +18,8 @@ class TextWidgetResource extends Resource
     protected static ?string $model = TextWidget::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Content';
+
 
     public static function form(Form $form): Form
     {
@@ -29,12 +31,13 @@ class TextWidgetResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image(),
                 Forms\Components\TextInput::make('title')
+                    ->required()
                     ->maxLength(2048),
                 Forms\Components\Textarea::make('content')
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('active')
                     ->required(),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -43,15 +46,15 @@ class TextWidgetResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('key')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+//                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('active')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+//                Tables\Columns\TextColumn::make('created_at')
+//                    ->dateTime()
+//                    ->sortable()
+//                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()

@@ -23,7 +23,7 @@ class TextWidget extends Model
     {
 
         $widget=Cache::get('text-widget'.$key,function () use($key){
-            return TextWidget::query()->where('key','=',$key)->where('active','-',1)->first();
+            return TextWidget::query()->where('key','=',$key)->where('active','=',1)->first();
         });
 
         if ($widget){
@@ -35,7 +35,7 @@ class TextWidget extends Model
     public  static  function getContent(string $key)
     {
         $widget=Cache::get('text-widget'.$key,function () use($key){
-            return TextWidget::query()->where('key','=',$key)->where('active','-',1)->first();
+            return TextWidget::query()->where('key','=',$key)->where('active','=',1)->first();
         });
         if ($widget){
             return $widget->content;

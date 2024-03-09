@@ -86,7 +86,6 @@ class TextWidgetResource extends Resource
         return [
             'index' => Pages\ListTextWidgets::route('/'),
             'create' => Pages\CreateTextWidget::route('/create'),
-            'view' => Pages\ViewTextWidget::route('/{record}'),
             'edit' => Pages\EditTextWidget::route('/{record}/edit'),
         ];
     }
